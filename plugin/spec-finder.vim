@@ -36,8 +36,17 @@ function! RelatedSpecVOpen()
   endif
 endfunction
 
+function! RelatedSpecSOpen()
+  let l:spec_path = RelatedSpec()
+  if filereadable(l:spec_path)
+    execute ":sp " . l:spec_path
+  endif
+endfunction
+
 command! RelatedSpecVOpen call RelatedSpecVOpen()
+command! RelatedSpecSOpen call RelatedSpecSOpen()
 command! RelatedSpecOpen call RelatedSpecOpen()
 
-nnoremap <silent> <C-s> :RelatedSpecVOpen<CR>
+nnoremap <silent> <leader>s :RelatedSpecVOpen<CR>
+nnoremap <silent> <leader>S :RelatedSpecSOpen<CR>
 nnoremap <silent> ,<C-s> :RelatedSpecOpen<CR>
